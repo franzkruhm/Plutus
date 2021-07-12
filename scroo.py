@@ -4,7 +4,7 @@
 #################################################################################
 ## This implements use of memcached to allow sharing of the database between   ##
 ## threads. With the current pickled database of 15th march 2021 the RAM use   ##
-## is about 4100gigs for memcached database.                                   ##
+## is about 4.100gigs for memcached database.                                  ##
 ##                                                                             ##
 ## The keygen in Plutus has been rewritten as it was returning erroneous       ##
 ## addresses.                                                                  ##
@@ -14,6 +14,7 @@
 #################################################################################
 ## This is the main bruteforcer.                                               ##
 #################################################################################
+## Version 12.7.2021
 
 import os
 import hashlib
@@ -58,7 +59,8 @@ def keygen(num_keys):
         private = os.urandom(32).hex()
         
         ## PUBLIC UNCOMP
-        public = b'04'+codecs.encode(ecdsa.SigningKey.from_string(codecs.decode(private, 'hex'), curve=ecdsa.SECP256k1).verifying_key.to_string(), 'hex')        
+        key = ecdsa.SigningKey.from_string(codecs.decode(private, 'hex'), curve=ecdsa.SECP256k1).verifying_key.to_string()
+        public = b'04'+codecs.encode(key, 'hex')        
         public_key_bytes = codecs.decode(public, 'hex')
 
         ## PUBLIC UNCOMP ADDRESS
@@ -81,10 +83,10 @@ def keygen(num_keys):
         address = base58(address_hex)
 
         ## PUBLIC COMPD
-        private_hex = codecs.decode(private, 'hex')
+        #private_hex = codecs.decode(private, 'hex')
         # Get ECDSA public key
-        key = ecdsa.SigningKey.from_string(private_hex, curve=ecdsa.SECP256k1).verifying_key
-        key_bytes = key.to_string()
+        #key = ecdsa.SigningKey.from_string(private_hex, curve=ecdsa.SECP256k1).verifying_key
+        key_bytes = key
         key_hex = codecs.encode(key_bytes, 'hex')
         # Get X from the key (first half)
         key_string = key_hex.decode('utf-8')
@@ -198,6 +200,7 @@ if __name__ == '__main__':
     sanity_2_s = f.readline().strip()
     f.close()
     print('sanities: ' + sanity_1_s + ' ' + sanity_2_s)
+    print(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
     while cpu < max_processes:
         print('thread spawned: ' + str(cpu))
         cpu = cpu + 1
@@ -205,8 +208,7 @@ if __name__ == '__main__':
     while True:
         time.sleep(15)
         stats = client.stats()
-        print('\revictions: '+ str(stats.get(b'evictions')) + ' reclaimed: ' + str(stats.get(b'reclaimed')) +
+        print('\r '+ datetime.now().strftime("%m/%d/%Y, %H:%M:%S") + '  evictions: '+ str(stats.get(b'evictions')) + ' reclaimed: ' + str(stats.get(b'reclaimed')) +
               ' connections: ' + str(stats.get(b'curr_connections')) + ' misses: ' + str(stats.get(b'get_misses')), end=' ')
         if stats.get(b'evictions') > 0 or stats.get(b'reclaimed') > 0:
                      print('!!! ERRORR !!!')
-
