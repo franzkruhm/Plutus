@@ -14,7 +14,7 @@
 #################################################################################
 ## This is the main bruteforcer.                                               ##
 #################################################################################
-## Version 12.7.2021
+## Version 13.7.2021
 
 import os
 import hashlib
@@ -54,13 +54,13 @@ def base58(address_hex):
     return b58_string
 
 def keygen(num_keys):
-    keys = []
+    _keys = []
     for i in range(num_keys):
         private = os.urandom(32).hex()
         
         ## PUBLIC UNCOMP
         key = ecdsa.SigningKey.from_string(codecs.decode(private, 'hex'), curve=ecdsa.SECP256k1).verifying_key.to_string()
-        public = b'04'+codecs.encode(key, 'hex')        
+        public = b'04'+codecs.encode(key, 'hex')
         public_key_bytes = codecs.decode(public, 'hex')
 
         ## PUBLIC UNCOMP ADDRESS
@@ -84,10 +84,7 @@ def keygen(num_keys):
 
         ## PUBLIC COMPD
         #private_hex = codecs.decode(private, 'hex')
-        # Get ECDSA public key
-        #key = ecdsa.SigningKey.from_string(private_hex, curve=ecdsa.SECP256k1).verifying_key
-        key_bytes = key
-        key_hex = codecs.encode(key_bytes, 'hex')
+        key_hex = codecs.encode(key, 'hex')
         # Get X from the key (first half)
         key_string = key_hex.decode('utf-8')
         half_len = len(key_hex) // 2
@@ -137,8 +134,8 @@ def keygen(num_keys):
                 break
         wif = chars[0] * pad + result
 
-        keys.append([private, wif, public, address, address_comp])
-    return keys
+        _keys.append([private, wif, public, address, address_comp])
+    return _keys
 
 
 ################################# COMPARE CODE #################################
@@ -149,18 +146,12 @@ def process(keys_list):
         keys_to_call.append(i[4])
     keys_ret = client.get_multi(keys_to_call)
     if keys_ret:
+        print(keys_ret)
+        print(keys_list)
         with open('plutus.txt', 'a') as file:
             for i in keys_list:
-                #if (i[3] == keys_ret[0] or i[4] == keys_ret[0]):
-                #     file.write('hex private key: ' + str(i[0]) + '\n' +
-                #      'WIF private key: ' + str(i[1]) + '\n' +
-                #      'public key: ' + str(i[2]) + '\n' +
-                #      'address uncomp: ' + str(i[3]) + '\n' +
-                #      'address comped: ' + str(i[4]) + '\n\n')
-                file.write(keys_ret)
-                file.write(keys_list)
-            print(keys_ret)
-            print(keys_list)
+                file.write(str(keys_ret))
+                file.write(str(keys_list))
         print(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
         print('GOT ONE')
 
