@@ -19,6 +19,10 @@ On windows 10 performance testing showed that memcached 1.4.5 performed better t
 Thus an older version of memcached seems considerably faster.
 Thus at this time on Windows 10 the version of memcached I would recommend can be found at http://downloads.northscale.com/memcached-1.4.5-amd64.zip
 
+# Warning for Linux users
+
+It is possible that your distro might already be running an instance of memcached with limited parameters, in which case this will interfere. You'll need to check your distro to establish what parameters the built-in memcached is running with and adjust accordingly.
+
 # Wanna Support Me?
 
 ```
