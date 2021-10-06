@@ -23,12 +23,14 @@ Thus at this time on Windows 10 the version of memcached I would recommend can b
 
 It is possible that your distro might already be running an instance of memcached with limited parameters, in which case this will interfere. You'll need to check your distro to establish what parameters the built-in memcached is running with and adjust accordingly.
 
+
+
 # Wanna Support Me?
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/G2G758OLF)
 
 ```
 Please consider kind support !
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/G2G758OLF)
 
 BTC: bc1q5gkn0tln6su3tvwnld7xf7p20fjssaufles47d
 ETH: 0xD7A75bF1b64e302ad07b0843A9D295F9a9E3db8E
