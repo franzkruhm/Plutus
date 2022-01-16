@@ -2,6 +2,8 @@
 
 A Bitcoin wallet collider that brute forces random wallet addresses from a databases of known addresses
 
+# PLEASE NOTE: It is quite unlikely you will find a working address like this; the number of potential addresses used by Bitcoin is enormous, as in, you'd need billion of years of processing. This is mostly an exercise in optimization, it is very unlikely to make you rich.
+
 # About This Fork
 
 Workaround for memory usage using memcached. Also fixes/replaces Plutus' keygen 
