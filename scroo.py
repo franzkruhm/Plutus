@@ -200,6 +200,6 @@ if __name__ == '__main__':
         time.sleep(15)
         stats = client.stats()
         print('\r '+ datetime.now().strftime("%m/%d/%Y, %H:%M:%S") + '  evictions: '+ str(stats.get(b'evictions')) + ' reclaimed: ' + str(stats.get(b'reclaimed')) +
-              ' connections: ' + str(stats.get(b'curr_connections')) + ' misses: ' + str(stats.get(b'get_misses')), end=' ')
+              ' Connections: ' + str(stats.get(b'curr_connections')) + ' Misses: ' + str(stats.get(b'get_misses')) + ' MPS: ' + str(round(stats.get(b'get_misses') / stats.get(b'uptime'),2)), end=' ')
         if stats.get(b'evictions') > 0 or stats.get(b'reclaimed') > 0:
                      print('!!! ERRORR !!!')
