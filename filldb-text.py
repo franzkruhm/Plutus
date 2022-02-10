@@ -20,6 +20,7 @@ import random
 import os
 from pymemcache.client import base
 from datetime import datetime
+import time
 
 DATABASE_PATH = r'database/data.txt'
 
@@ -32,6 +33,7 @@ print('connect memcached...')
 client = base.Client(('localhost', 11211))
 print('Loading and injecting database')
 print(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
+startTime = time.time()
 
 i_add = 0
 f = open(DATABASE_PATH, 'r')
@@ -52,7 +54,9 @@ while True:
     print('\raddresses: ' + str(i_add), end=' ')
 
 f.close()
-print('DONE LOADING DATABASE')
+endTime = time.time()
+executionTime = (endTime - startTime)
+print('DONE LOADING DATABASE: Addresses loadeded in ' + str(round(executionTime, 2)) + ' seconds!')
 print('sanity 1: ' + sanity_1_s + ' sanity 2: ' + sanity_2_s)
 
 print(datetime.now().strftime("%m/%d/%Y, %H:%M:%S"))
