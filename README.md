@@ -39,6 +39,10 @@ ETH: 0xD7A75bF1b64e302ad07b0843A9D295F9a9E3db8E
 DOT: 146LV65VWKxM3HsGWNMdjvB3YKg7JHYnRkeX2K3vSTJYxsdB 
 ```
 
+# Install
+You will need Python 3 with pymemcache and ecdsa, along with a good version of memcached as mentionned above.
+You can install the Python dependencies using pip.
+
 # Quick Start
 
 ```
