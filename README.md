@@ -1,3 +1,6 @@
+
+# Scroo will no longer be updated on github for various reasons; including the fact that I've decided to start work on a proprietary, closed source, version following some positive results. Thanks to all and if you are still using this or working on a fork or whatever I'd like to hear about it.
+
 # Scroo Bitcoin Brute Forcer, memcached workaround the memory issue and fixed keygen
 
 A Bitcoin wallet collider that brute forces random wallet addresses from a databases of known addresses
