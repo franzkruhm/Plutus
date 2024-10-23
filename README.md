@@ -1,6 +1,4 @@
 
-# Scroo will no longer be updated on github for various reasons; including the fact that I've decided to start work on a proprietary, closed source, version following some positive results. Thanks to all and if you are still using this or working on a fork or whatever I'd like to hear about it.
-
 # Scroo Bitcoin Brute Forcer, memcached workaround the memory issue and fixed keygen
 
 A Bitcoin wallet collider that brute forces random wallet addresses from a databases of known addresses
@@ -34,7 +32,7 @@ It is possible that your distro might already be running an instance of memcache
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/G2G758OLF)
 
-Donate in crypto: https://trocador.app/anonpay/?ticker_to=eth&network_to=ERC20&address=0xAF565Ea309267dD97B3AAb3414bF1d0Fe0037e65&donation=True&simple_mode=True&name=Franz&bgcolor=
+Donate in crypto: [Trocador](https://trocador.app/anonpay/?ticker_to=btc&network_to=Mainnet&address=bc1qz7zu52792ypuqf2k20f5f4rjp3m6pulwwklhnd&donation=True&simple_mode=True&name=Franz&bgcolor=)
 
 # Install
 You will need Python 3 with pymemcache and ecdsa, along with a good version of memcached as mentionned above.
